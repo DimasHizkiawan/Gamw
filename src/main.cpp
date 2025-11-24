@@ -2,6 +2,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <iostream>
 #include "Menu.h"
+#include "GameBox.h"
 
 class Game {
 public:
@@ -163,7 +164,10 @@ private:
             menu.update(deltaTime);
         }
         else if (state == PLAYING) {
-            // Game logic here
+            if (!runGameBox(renderer)) {
+            state = MENU; 
+        std::cout << "[*] Returning from game to menu" << std::endl;
+    }
         }
         else if (state == HOSTING) {
             // Server hosting logic here
